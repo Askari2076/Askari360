@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Daily Routine</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #todo-list {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        #task-input {
+            width: 70%;
+            padding: 8px;
+        }
+
+        #add-task-btn {
+            width: 28%;
+            padding: 8px;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .delete-btn {
+            background-color: #ff6961;
+            color: #fff;
+            padding: 5px;
+            cursor: pointer;
+            border: none;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>My Daily Routine</h1>
+
+    <div id="todo-list">
+        <input type="text" id="task-input" placeholder="Add a new task">
+        <button id="add-task-btn" onclick="addTask()">Add Task</button>
+
+        <ul id="tasks">
+            <!-- Tasks will be added dynamically here -->
+        </ul>
+    </div>
+
+    <script>
+        function addTask() {
+            var taskInput = document.getElementById("task-input");
+            var taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                var tasksList = document.getElementById("tasks");
+                var listItem = document.createElement("li");
+
+                listItem.innerHTML = `
+                    <span>${taskText}</span>
+                    <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
+                `;
+
+                tasksList.appendChild(listItem);
+                taskInput.value = "";
+            }
+        }
+
+        function deleteTask(btn) {
+            var listItem = btn.parentElement;
+            listItem.remove();
+        }
+    </script>
+</body>
+</html>
+
